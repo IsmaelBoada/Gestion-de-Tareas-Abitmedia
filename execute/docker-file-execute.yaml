@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: bd_abitmedia
+      POSTGRES_USER: usertareas
+      POSTGRES_PASSWORD: secret123
+    ports:
+      - "55432:5432"
+    volumes:
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+      - ./db:/var/lib/postgresql/data
+
+  app:
+    image: ismaelboada/abitmedia:1.0
+    container_name: abitmedia_app
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - "9035:9025"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/bd_abitmedia
+      SPRING_DATASOURCE_USERNAME: usertareas
+      SPRING_DATASOURCE_PASSWORD: secret123
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+
+volumes:
+  postgres_data:
