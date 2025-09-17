@@ -89,4 +89,5 @@ Para realizar peticiones a los endpoints que requieren autorización:
 
 4️⃣ **Ejecutar las peticiones**  
 Con el token incluido en el header, se podrán probar los endpoints protegidos y obtener las respuestas correspondientes.
+Para poder acceder se debe usar localhost:9035
 
