@@ -52,6 +52,7 @@ public class TareaBuilder {
                 .titulo(model.getTitulo())
                 .descripcion(model.getDescripcion())
                 .estadoTarea(model.getEstadoTarea())
+                .tokenIdUsuario(model.getUsuario().getTokenId())
                 .build();
     }
 
