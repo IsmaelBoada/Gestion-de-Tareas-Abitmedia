@@ -13,5 +13,7 @@ public abstract class ApiMessages {
     public static final String ERROR_OPERACION = "No se puede realizar la operación requerida";
     public static final String ERROR_VALIDACIONES_REQUEST = "Existe los siguientes errores: ";
 
+    public static final String ERROR_ESTADO_TAREA = "Estado de tarea no disponible: ";
+
 
 }
