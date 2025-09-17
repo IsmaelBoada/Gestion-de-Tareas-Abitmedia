@@ -14,7 +14,7 @@ services:
       - ./db:/var/lib/postgresql/data
 
   app:
-    image: ismaelboada/abitmedia:1.0
+    image: ismaelboada/abitmedia:1.1
     container_name: abitmedia_app
     restart: always
     depends_on:
