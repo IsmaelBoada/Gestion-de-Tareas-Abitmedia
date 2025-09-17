@@ -37,4 +37,6 @@ public class TareaDto implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaActualizacion;
 
+    private UUID tokenIdUsuario;
+
 }
