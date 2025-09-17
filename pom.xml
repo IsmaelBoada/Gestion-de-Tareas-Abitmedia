@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com.prueba-tecnica</groupId>
 	<artifactId>abitmedia</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3</version>
 	<name>abitmedia</name>
 	<description>Prueba Tecnica Java</description>
 	<properties>

@@ -4,7 +4,7 @@ FROM eclipse-temurin:21-jdk-jammy
 WORKDIR /app
 
 # Copiamos el JAR construido
-COPY target/abitmedia-0.0.2.jar app.jar
+COPY target/abitmedia-0.0.3.jar app.jar
 
 # Exponemos el puerto
 EXPOSE 9025

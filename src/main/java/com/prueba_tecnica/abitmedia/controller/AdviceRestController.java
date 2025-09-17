@@ -14,6 +14,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.Arrays;
@@ -52,6 +53,26 @@ public class AdviceRestController extends ResponseEntityExceptionHandler {
                     Arrays.stream(ife.getTargetType().getEnumConstants())
                             .map(Object::toString)
                             .toList());
+        }
+
+        ModelResponseDto response = ModelResponseDto.builder()
+                .statusCode(HttpStatus.BAD_REQUEST)
+                .message(message)
+                .build();
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<ModelResponseDto> handleTypeMismatch(MethodArgumentTypeMismatchException ex) {
+        String field = ex.getName();
+        String value = ex.getValue() != null ? ex.getValue().toString() : "null";
+
+        String message;
+        if (ex.getRequiredType() != null && ex.getRequiredType().equals(java.util.UUID.class)) {
+            message = ApiMessages.ERROR_TOKEN_NO_VALIDO + field + ApiMessages.ERROR_UUID_NO_VALIDO + value;
+        } else {
+            message = ApiMessages.ERROR_NO_ESPERADO;
         }
 
         ModelResponseDto response = ModelResponseDto.builder()
